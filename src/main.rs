@@ -7,8 +7,10 @@ enum Message {
 
 impl Message {
     fn call(&self) {
-        Move {1, 1};
-        ChangeColor(255, 0, 0);
+        Message::Quit;
+        Message::Write(s) => println!("pasted {}", s);
+        Message::Move { x: (1), y: (1) };
+        Message::ChangeColor(255, 0, 0);
     }
 }
 
