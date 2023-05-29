@@ -7,14 +7,25 @@ enum Message {
 
 impl Message {
     fn call(&self) {
-        Message::Quit;
-        Message::Write(s) => println!("pasted {}", s);
-        Message::Move { x: (1), y: (1) };
-        Message::ChangeColor(255, 0, 0);
+        match &self {
+            Message::Quit => println!("Quit"),
+            Message::Write(s) => println!("{}", s),
+            Message::Move { x, y } => {
+                println!("moved x:{}, y:{}", x, y);
+            }
+            Message::ChangeColor(255, 0, 0) => println!("R:{} G:{} B:{}", 0, 1, 2),
+            _ => println!("Not a valid Message "),
+        }
     }
 }
 
 fn main() {
-    let m = Message::Write(String::from("hello"));
-    m.call();
+    let quit = Message::Quit;
+    quit.call();
+    let write = Message::Write(String::from("Hello, Rust!"));
+    write.call();
+    let _move = Message::Move { x: 1, y: 1 };
+    _move.call();
+    let change_color_blue = Message::ChangeColor(0, 0, 255);
+    change_color_blue.call();
 }
